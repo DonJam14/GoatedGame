@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="GoatedGame"
+run/main_scene="uid://buwljlujy1aqr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
 [autoload]
 
-PlayerStats="*res://player_stats.gd"
+PlayerStats="*res://Scripts/Singletons/player_stats.gd"
+
+[display]
+
+window/vsync/vsync_mode=0
+
+[layer_names]
+
+2d_physics/layer_1="Cursor"
+2d_physics/layer_2="Grabbables"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://buwljlujy1aqr"]
+
+[ext_resource type="Texture2D" uid="uid://bpagwuypjtouq" path="res://Assets/crosshair.png" id="1_i537j"]
+[ext_resource type="Script" uid="uid://bx712ijds2c5k" path="res://Scripts/Player Nodes/crosshair.gd" id="1_kl1mh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu2ot"]
+size = Vector2(1153, 198)
+
+[node name="Kitchen" type="Node2D"]
+
+[node name="TEMP-LAYOUT-MAPPING" type="Node2D" parent="."]
+
+[node name="Countertop" type="Area2D" parent="TEMP-LAYOUT-MAPPING"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TEMP-LAYOUT-MAPPING/Countertop"]
+position = Vector2(576.5, 549)
+shape = SubResource("RectangleShape2D_gu2ot")
+
+[node name="Crosshair" type="Node2D" parent="."]
+script = ExtResource("1_kl1mh")
+
+[node name="crosshair_texture" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("1_i537j")
