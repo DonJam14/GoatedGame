@@ -1,3 +1,5 @@
+# TODO:
+	
 ## General
 - Art art art!
 - Music
@@ -14,7 +16,7 @@
 - Determine controls (should weird mouse movement be a debuff?)
 - Determine number of ingredients
 - Implement combination of ingredients
-    - Biscut manager handles signals from ingredient holders to add ingredient to biscut children
+	- Biscut manager handles signals from ingredient holders to add ingredient to biscut children
 
 ## Nightime / Resource management scene
 - Art(?)
