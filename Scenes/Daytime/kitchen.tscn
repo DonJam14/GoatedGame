@@ -1,23 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://buwljlujy1aqr"]
+[gd_scene load_steps=10 format=3 uid="uid://buwljlujy1aqr"]
 
 [ext_resource type="Texture2D" uid="uid://bpagwuypjtouq" path="res://Assets/crosshair.png" id="1_i537j"]
 [ext_resource type="Script" uid="uid://bx712ijds2c5k" path="res://Scripts/Player Nodes/crosshair.gd" id="1_kl1mh"]
+[ext_resource type="Script" uid="uid://drqfhvbisgv8c" path="res://Scripts/Classes/DraggableNode.gd" id="3_gu2ot"]
+[ext_resource type="Texture2D" uid="uid://dmu72k31wynhw" path="res://Assets/Objects/temp_bottle.png" id="3_sgmq6"]
+[ext_resource type="Texture2D" uid="uid://wj5ptg5urty7" path="res://Assets/Objects/temp_bottle_blue.png" id="5_m03mi"]
+[ext_resource type="Script" uid="uid://dcdi4ck8cqu16" path="res://Scripts/Classes/PhysicsDraggableNode.gd" id="5_ogphn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu2ot"]
-size = Vector2(1153, 198)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vu8q7"]
+size = Vector2(1155, 214)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m03mi"]
+size = Vector2(34, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogphn"]
+size = Vector2(34, 73)
 
 [node name="Kitchen" type="Node2D"]
 
 [node name="TEMP-LAYOUT-MAPPING" type="Node2D" parent="."]
 
-[node name="Countertop" type="Area2D" parent="TEMP-LAYOUT-MAPPING"]
+[node name="StaticBody2D" type="StaticBody2D" parent="TEMP-LAYOUT-MAPPING"]
+position = Vector2(560, 441)
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TEMP-LAYOUT-MAPPING/Countertop"]
-position = Vector2(576.5, 549)
-shape = SubResource("RectangleShape2D_gu2ot")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TEMP-LAYOUT-MAPPING/StaticBody2D"]
+position = Vector2(15.5, 97)
+shape = SubResource("RectangleShape2D_vu8q7")
 
 [node name="Crosshair" type="Node2D" parent="."]
+position = Vector2(226, 93)
 script = ExtResource("1_kl1mh")
 
 [node name="crosshair_texture" type="Sprite2D" parent="Crosshair"]
 texture = ExtResource("1_i537j")
+
+[node name="Bottle" type="Node2D" parent="."]
+position = Vector2(453, 323)
+script = ExtResource("3_gu2ot")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="Bottle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottle/Area2D"]
+position = Vector2(-1, -3.5)
+shape = SubResource("RectangleShape2D_m03mi")
+
+[node name="bottle_texture" type="Sprite2D" parent="Bottle"]
+texture = ExtResource("3_sgmq6")
+
+[node name="PhysicsBottle" type="RigidBody2D" parent="."]
+position = Vector2(784, 322)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("5_ogphn")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBottle"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_ogphn")
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysicsBottle"]
+texture = ExtResource("5_m03mi")
+
+[connection signal="input_event" from="Bottle/Area2D" to="Bottle" method="_on_area_2d_input_event"]
