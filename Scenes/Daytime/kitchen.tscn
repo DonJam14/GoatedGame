@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://buwljlujy1aqr"]
+[gd_scene load_steps=13 format=3 uid="uid://buwljlujy1aqr"]
 
 [ext_resource type="Texture2D" uid="uid://bpagwuypjtouq" path="res://Assets/crosshair.png" id="1_i537j"]
 [ext_resource type="Script" uid="uid://bx712ijds2c5k" path="res://Scripts/Player Nodes/crosshair.gd" id="1_kl1mh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dmu72k31wynhw" path="res://Assets/Objects/temp_bottle.png" id="3_sgmq6"]
 [ext_resource type="Texture2D" uid="uid://wj5ptg5urty7" path="res://Assets/Objects/temp_bottle_blue.png" id="5_m03mi"]
 [ext_resource type="Script" uid="uid://dcdi4ck8cqu16" path="res://Scripts/Classes/PhysicsDraggableNode.gd" id="5_ogphn"]
+[ext_resource type="Script" uid="uid://i5naql31kd82" path="res://Scripts/measuring_cup.gd" id="7_tko6y"]
+[ext_resource type="Texture2D" uid="uid://ctphpmnm3hchf" path="res://Assets/Objects/cup.png" id="8_pdcip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vu8q7"]
 size = Vector2(1155, 214)
@@ -15,6 +17,9 @@ size = Vector2(34, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogphn"]
 size = Vector2(34, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4c4i"]
+size = Vector2(74, 62)
 
 [node name="Kitchen" type="Node2D"]
 
@@ -49,6 +54,7 @@ position = Vector2(784, 322)
 collision_layer = 2
 collision_mask = 5
 input_pickable = true
+can_sleep = false
 lock_rotation = true
 script = ExtResource("5_ogphn")
 metadata/_edit_group_ = true
@@ -60,13 +66,24 @@ shape = SubResource("RectangleShape2D_ogphn")
 [node name="Sprite2D" type="Sprite2D" parent="PhysicsBottle"]
 texture = ExtResource("5_m03mi")
 
-[node name="Crosshair" type="Node2D" parent="."]
+[node name="Crosshair" type="Node2D" parent="." groups=["Crosshair"]]
+z_index = 1
 position = Vector2(226, 93)
 script = ExtResource("1_kl1mh")
 
 [node name="crosshair_texture" type="Sprite2D" parent="Crosshair"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_i537j")
+
+[node name="MeasuringCup" type="RigidBody2D" parent="."]
+script = ExtResource("7_tko6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeasuringCup"]
+position = Vector2(3, -1)
+shape = SubResource("RectangleShape2D_q4c4i")
+
+[node name="Sprite2D" type="Sprite2D" parent="MeasuringCup"]
+texture = ExtResource("8_pdcip")
 
 [connection signal="input_event" from="Bottle/Area2D" to="Bottle" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="PhysicsBottle" to="PhysicsBottle" method="_on_mouse_entered"]
