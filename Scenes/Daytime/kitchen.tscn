@@ -1,16 +1,29 @@
-[gd_scene load_steps=13 format=3 uid="uid://buwljlujy1aqr"]
+[gd_scene load_steps=20 format=3 uid="uid://buwljlujy1aqr"]
 
 [ext_resource type="Texture2D" uid="uid://bpagwuypjtouq" path="res://Assets/crosshair.png" id="1_i537j"]
 [ext_resource type="Script" uid="uid://bx712ijds2c5k" path="res://Scripts/Player Nodes/crosshair.gd" id="1_kl1mh"]
+[ext_resource type="Texture2D" uid="uid://dvbrh873ghyuq" path="res://Assets/Environment/jank_background.png" id="1_pdcip"]
 [ext_resource type="Script" uid="uid://drqfhvbisgv8c" path="res://Scripts/Classes/DraggableNode.gd" id="3_gu2ot"]
 [ext_resource type="Texture2D" uid="uid://dmu72k31wynhw" path="res://Assets/Objects/temp_bottle.png" id="3_sgmq6"]
 [ext_resource type="Texture2D" uid="uid://wj5ptg5urty7" path="res://Assets/Objects/temp_bottle_blue.png" id="5_m03mi"]
 [ext_resource type="Script" uid="uid://dcdi4ck8cqu16" path="res://Scripts/Classes/PhysicsDraggableNode.gd" id="5_ogphn"]
 [ext_resource type="Script" uid="uid://i5naql31kd82" path="res://Scripts/measuring_cup.gd" id="7_tko6y"]
 [ext_resource type="Texture2D" uid="uid://ctphpmnm3hchf" path="res://Assets/Objects/cup.png" id="8_pdcip"]
+[ext_resource type="Script" uid="uid://b5coxg3pe3ccn" path="res://Scenes/Daytime/wand.gd" id="10_6cr7j"]
+[ext_resource type="Texture2D" uid="uid://dchwg2m5i0pg7" path="res://Assets/wand.png" id="11_0klev"]
+[ext_resource type="Texture2D" uid="uid://c78bbhdfa4cpt" path="res://Assets/hand.png" id="12_0klev"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vu8q7"]
-size = Vector2(1155, 214)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0klev"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hd6md"]
+distance = -632.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3hqn2"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_umrun"]
+normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m03mi"]
 size = Vector2(34, 73)
@@ -23,17 +36,24 @@ size = Vector2(74, 62)
 
 [node name="Kitchen" type="Node2D"]
 
-[node name="TEMP-LAYOUT-MAPPING" type="Node2D" parent="."]
+[node name="Environment" type="StaticBody2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="TEMP-LAYOUT-MAPPING"]
-position = Vector2(560, 441)
-collision_layer = 4
-collision_mask = 2
-metadata/_edit_group_ = true
+[node name="EnvironmentTexture" type="Sprite2D" parent="Environment"]
+texture = ExtResource("1_pdcip")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TEMP-LAYOUT-MAPPING/StaticBody2D"]
-position = Vector2(15.5, 97)
-shape = SubResource("RectangleShape2D_vu8q7")
+[node name="UpperWorldBoundary" type="CollisionShape2D" parent="Environment"]
+shape = SubResource("WorldBoundaryShape2D_0klev")
+
+[node name="LowerWorldBoundary" type="CollisionShape2D" parent="Environment"]
+shape = SubResource("WorldBoundaryShape2D_hd6md")
+
+[node name="LeftWorldBoundary" type="CollisionShape2D" parent="Environment"]
+shape = SubResource("WorldBoundaryShape2D_3hqn2")
+
+[node name="RightWorldBoundary" type="CollisionShape2D" parent="Environment"]
+position = Vector2(1152, 0)
+shape = SubResource("WorldBoundaryShape2D_umrun")
 
 [node name="Bottle" type="Node2D" parent="."]
 position = Vector2(453, 323)
@@ -76,6 +96,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_i537j")
 
 [node name="MeasuringCup" type="RigidBody2D" parent="."]
+position = Vector2(350, 189)
 mass = 2.0
 script = ExtResource("7_tko6y")
 metadata/_edit_group_ = true
@@ -86,6 +107,22 @@ shape = SubResource("RectangleShape2D_q4c4i")
 
 [node name="MCupTexture" type="Sprite2D" parent="MeasuringCup"]
 texture = ExtResource("8_pdcip")
+
+[node name="Wand" type="Node2D" parent="."]
+position = Vector2(814, 662)
+script = ExtResource("10_6cr7j")
+metadata/_edit_group_ = true
+
+[node name="WandTex" type="Sprite2D" parent="Wand"]
+texture = ExtResource("11_0klev")
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(461, 715)
+script = ExtResource("10_6cr7j")
+metadata/_edit_group_ = true
+
+[node name="HandTexture" type="Sprite2D" parent="Hand"]
+texture = ExtResource("12_0klev")
 
 [connection signal="input_event" from="Bottle/Area2D" to="Bottle" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="PhysicsBottle" to="PhysicsBottle" method="_on_mouse_entered"]
