@@ -19,8 +19,6 @@ func _process(delta: float) -> void:
 
 func on_item_pickup() -> void:
 	self.items_held += 1
-	print("items held: " + str(items_held))
 
 func on_item_release() -> void:
 	self.items_held -= 1
-	print("items held: " + str(items_held))

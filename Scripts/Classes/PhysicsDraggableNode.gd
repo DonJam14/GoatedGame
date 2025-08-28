@@ -12,7 +12,7 @@ signal object_released
 
 func _ready() -> void:
 	#set relevant properties
-	self.can_sleep = false
+	#self.can_sleep = false #fixes bug where holding it still makes it float there
 	self.lock_rotation = true
 	self.collision_layer = 2 #exists on layer 2
 	self.collision_mask = 1 | 4 #set to scan for layers 1 and 3
