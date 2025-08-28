@@ -6,6 +6,9 @@ extends PhysicsDraggableNode
 @onready var sugar_texture := preload("res://Assets/Objects/log_cup_sugar.png")
 @onready var milk_texture := preload("res://Assets/Objects/log_cup_milk.png")
 
+## Get child Sprite2D
+@onready var sprite := $MCupTexture
+
 enum Ingredient {
 	FLOUR,
 	SUGAR,

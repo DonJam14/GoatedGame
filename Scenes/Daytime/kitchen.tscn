@@ -76,13 +76,15 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_i537j")
 
 [node name="MeasuringCup" type="RigidBody2D" parent="."]
+mass = 2.0
 script = ExtResource("7_tko6y")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeasuringCup"]
 position = Vector2(3, -1)
 shape = SubResource("RectangleShape2D_q4c4i")
 
-[node name="Sprite2D" type="Sprite2D" parent="MeasuringCup"]
+[node name="MCupTexture" type="Sprite2D" parent="MeasuringCup"]
 texture = ExtResource("8_pdcip")
 
 [connection signal="input_event" from="Bottle/Area2D" to="Bottle" method="_on_area_2d_input_event"]
