@@ -18,6 +18,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 PlayerStats="*res://Scripts/Singletons/player_stats.gd"
+GlobalEnums="*res://Scripts/Singletons/global_enums.gd"
 
 [display]
 
