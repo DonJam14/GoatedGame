@@ -9,11 +9,4 @@ extends PhysicsDraggableNode
 ## Get child Sprite2D
 @onready var sprite := $MCupTexture
 
-enum Ingredient {
-	FLOUR,
-	SUGAR,
-	MILK,
-	NONE
-}
-
-var stored: Ingredient = Ingredient.NONE
+var stored: GlobalEnums.BiscutIngredient = GlobalEnums.BiscutIngredient.NONE

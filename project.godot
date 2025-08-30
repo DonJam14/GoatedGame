@@ -42,3 +42,4 @@ right_click={
 2d_physics/layer_1="Cursor"
 2d_physics/layer_2="Grabbables"
 2d_physics/layer_3="Static Bodies"
+2d_physics/layer_4="Interactables"

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2soqwuq0bcdb"]
+
+[ext_resource type="Texture2D" uid="uid://2ex5e2aib2u7" path="res://Assets/Environment/flour_bag.png" id="1_0mtsc"]
+[ext_resource type="Script" uid="uid://dcpfnmcxg0hwy" path="res://Scripts/Classes/ComponentContainer.gd" id="1_jv7sp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mtsc"]
+size = Vector2(148, 172)
+
+[node name="FlourContainer" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_jv7sp")
+
+[node name="FlourTexture" type="Sprite2D" parent="."]
+texture = ExtResource("1_0mtsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0mtsc")
