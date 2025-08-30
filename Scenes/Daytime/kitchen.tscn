@@ -96,7 +96,7 @@ script = ExtResource("1_kl1mh")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_i537j")
 
-[node name="MeasuringCup" type="RigidBody2D" parent="."]
+[node name="MeasuringCup" type="RigidBody2D" parent="." groups=["MeasuringCup"]]
 position = Vector2(350, 189)
 mass = 2.0
 script = ExtResource("7_tko6y")
@@ -127,6 +127,7 @@ texture = ExtResource("12_0klev")
 
 [node name="FlourContainer" parent="." instance=ExtResource("13_hd6md")]
 position = Vector2(80, 386)
+component = 0
 
 [connection signal="input_event" from="Bottle/Area2D" to="Bottle" method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="PhysicsBottle" to="PhysicsBottle" method="_on_mouse_entered"]

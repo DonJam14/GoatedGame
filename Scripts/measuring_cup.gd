@@ -1,3 +1,4 @@
+class_name MeasuringCup
 extends PhysicsDraggableNode
 
 ## Preload textures
@@ -10,3 +11,14 @@ extends PhysicsDraggableNode
 @onready var sprite := $MCupTexture
 
 var stored: GlobalEnums.BiscutIngredient = GlobalEnums.BiscutIngredient.NONE
+
+func on_component_picked(component: GlobalEnums.BiscutIngredient) -> void:
+	match component:
+		GlobalEnums.BiscutIngredient.FLOUR:
+			sprite.texture = flour_texture
+		GlobalEnums.BiscutIngredient.SUGAR:
+			sprite.texture = sugar_texture
+		GlobalEnums.BiscutIngredient.MILK:
+			sprite.texture = milk_texture
+		_:
+			sprite.texture = none_texture
